@@ -167,146 +167,304 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Previous Voice Recognition Result -->
-            <StackPanel Grid.Column="1" 
-                        Grid.ColumnSpan="6"
-                        Grid.Row="0"
-                        Grid.RowSpan="2"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-                <Rectangle HorizontalAlignment="Stretch"
-                               VerticalAlignment="Top"
-                               Height="10"
-                               Width="{Binding ActualWidth, ElementName=TextBlock_PreviousVoiceRecognitionResult}"
-                               Fill="{Binding PrevVoiceRecognitionResult.Brush}"/>
-                <TextBlock Name="TextBlock_PreviousVoiceRecognitionResult"  
-                            FontFamily="Calibri" 
-                            FontSize="24" 
-                            Foreground="GhostWhite"
-                            TextTrimming="CharacterEllipsis"
-                            TextWrapping="Wrap"
-                            TextAlignment="Center"                               
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat=" {0} ({1})">
-                            <Binding Path="PrevVoiceRecognitionResult.RecognizedPhrase"/>
-                            <Binding Path="PrevVoiceRecognitionResult.MatchCount"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
+            <!-- Selected game clear logo -->
+            <Image Name="Image_Selected_GameClearLogo"
+                   Source="{Binding SelectedGame.ClearLogo}"
+                   Grid.Row="0"
+                   Grid.RowSpan="4"
+                   Grid.Column="2"
+                   Grid.ColumnSpan="10"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Stretch="Uniform"/>
 
-            <!-- Selected Result -->
-            <StackPanel Grid.Column="8"  
-                        Grid.ColumnSpan="16"
+            <!-- Selected game platform clear logo -->
+            <Image Name="Image_Selected_PlatformClearLogo"
+                   Source="{Binding SelectedGame.PlatformClearLogo}"
+                   Grid.Row="4"
+                   Grid.RowSpan="1"
+                   Grid.Column="8"
+                   Grid.ColumnSpan="4"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Stretch="Uniform"/>
+
+            <!-- Selected game background image -->
+            <Image Name="Image_Selected_BackgroundImage"
+                   Source="{Binding SelectedGame.BackgroundImage}"
+                   Grid.Row="0"
+                   Grid.RowSpan="9"
+                   Grid.Column="12"
+                   Grid.ColumnSpan="20"
+                   HorizontalAlignment="Stretch" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Stretch="Uniform"/>
+
+
+
+            <!-- Current list game images -->
+            <Grid Name="CurrentListGrid"
+                  Grid.Row="9"
+                  Grid.RowSpan="6"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="32"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Selected Voice Search Result -->
+                <StackPanel Grid.Column="1"  
                         Grid.Row="0"
-                        Grid.RowSpan="2"
+                        Grid.RowSpan="1"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-                <Rectangle HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top"
-                            Height="10"
-                            Width="{Binding ActualWidth, ElementName=TextBlock_SelectedVoiceRecognitionResult}"
-                            Fill="{Binding SelectedVoiceRecognitionResult.Brush}"/>
-                <TextBlock  
+                    <TextBlock  
                         Name="TextBlock_SelectedVoiceRecognitionResult"
                         FontFamily="Calibri" 
                         FontWeight="ExtraBold"
-                        FontSize="40" 
+                        FontSize="28" 
                         Foreground="GhostWhite"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap"
-                        TextAlignment="Center"
+                        TextAlignment="Left"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat=" {0} ({1})">
-                            <Binding Path="SelectedVoiceRecognitionResult.RecognizedPhrase"/>
-                            <Binding Path="SelectedVoiceRecognitionResult.MatchCount"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
+                        VerticalAlignment="Bottom">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat=" {0} ({1})">
+                                <Binding Path="SelectedVoiceRecognitionResult.RecognizedPhrase"/>
+                                <Binding Path="SelectedVoiceRecognitionResult.MatchCount"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
 
-            <!-- Next Result -->
-            <StackPanel Grid.Column="25"
-                        Grid.ColumnSpan="6"
-                        Grid.Row="0"
-                        Grid.RowSpan="2"
+                <StackPanel Name="CurrentListPrev1GameImage" 
+                        Grid.Row="1"
+                        Grid.RowSpan="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="1"
+                        Orientation="Horizontal"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-                <Rectangle HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top"
-                            Height="10"
-                            Width="{Binding ActualWidth, ElementName=TextBlock_NextVoiceRecognitionResult}"
-                            Fill="{Binding NextVoiceRecognitionResult.Brush}"/>
-                <TextBlock  
+                    <Image Name="Image_Prev1_BoxFront"
+                   Source="{Binding Prev1Game.FrontImage}"
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Opacity="0.25"
+                   Margin="2,2,2,2"
+                   Stretch="Uniform">
+                    </Image>
+                </StackPanel>
+
+                <StackPanel Name="GameImages" 
+                        Grid.Row="1"
+                        Grid.RowSpan="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+
+                    <Border BorderThickness="2" BorderBrush="AntiqueWhite">
+                        <Image Name="Image_Selected_BoxFront"
+                   Source="{Binding SelectedGame.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                    </Border>
+
+                    <Image Name="Image_Next1_BoxFront"
+                   Source="{Binding Next1Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+
+                    <Image Name="Image_Next2_BoxFront"
+                   Source="{Binding Next2Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+
+                    <Image Name="Image_Next3_BoxFront"
+                   Source="{Binding Next3Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+
+                    <Image Name="Image_Next4_BoxFront"
+                   Source="{Binding Next4Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+
+                    <Image Name="Image_Next5_BoxFront"
+                   Source="{Binding Next5Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+
+                    <Image Name="Image_Next6_BoxFront"
+                   Source="{Binding Next6Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+
+                    <Image Name="Image_Next7_BoxFront"
+                   Source="{Binding Next7Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+
+                    <Image Name="Image_Next8_BoxFront"
+                   Source="{Binding Next8Game.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Next list game images -->
+            <Grid Name="NextListGrid"
+                  Grid.Row="9"
+                  Grid.RowSpan="6"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="32"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RenderTransform>
+                    <TranslateTransform Y="{Binding ActualHeight,ElementName=NextListGrid}"/>
+                </Grid.RenderTransform>
+
+                <!-- Next Result -->
+                <StackPanel Grid.Column="1"
+                        Grid.ColumnSpan="1"
+                        Grid.Row="0"
+                        Grid.RowSpan="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
+                    <TextBlock  
                         Name="TextBlock_NextVoiceRecognitionResult"
                         FontFamily="Calibri" 
                         FontSize="24" 
                         Foreground="GhostWhite"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap"
-                        TextAlignment="Center"
+                        TextAlignment="Left"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Bottom">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat=" {0} ({1})">
+                                <Binding Path="NextVoiceRecognitionResult.RecognizedPhrase"/>
+                                <Binding Path="NextVoiceRecognitionResult.MatchCount"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- Next games list -->
+                <StackPanel Name="NextListGameImages" 
+                        Grid.Row="1"
+                        Grid.RowSpan="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="1"
+                        Orientation="Horizontal"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat=" {0} ({1})">
-                            <Binding Path="NextVoiceRecognitionResult.RecognizedPhrase"/>
-                            <Binding Path="NextVoiceRecognitionResult.MatchCount"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </StackPanel>
-            <TextBlock  Name="TextBlock_SelectedGameTitle"
-                        Text="{Binding SelectedGame.Title}"
-                        Grid.Row="2"
-                        Grid.RowSpan="3"
-                        Grid.Column="1"
-                        Grid.ColumnSpan="30"
-                        FontFamily="Impact" 
-                        FontWeight="ExtraBold"
-                        FontSize="40" 
-                        Foreground="GhostWhite"
-                        TextTrimming="CharacterEllipsis"
-                        TextWrapping="Wrap"
-                        TextAlignment="Center"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"/>
 
-            <Image Name="Image_Prev1_BoxFront"
-                   Source="{Binding Prev1Game.FrontImage}"
-                   Grid.Row="9"
-                   Grid.RowSpan="9"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="6"
+                    <Image Source="{Binding CurrentGame_NextList.FrontImage}"
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Stretch"
                    RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
                    Stretch="Uniform"/>
-
-            <Image Name="Image_Selected_BoxFront"
-                   Source="{Binding SelectedGame.FrontImage}"
-                   Grid.Row="6"
-                   Grid.RowSpan="12"
-                   Grid.Column="8"
-                   Grid.ColumnSpan="16"
+                    <Image Source="{Binding Next1Game_NextList.FrontImage}"
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Stretch"
                    RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
                    Stretch="Uniform"/>
-
-            <Image Name="Image_Next1_BoxFront"
-                   Source="{Binding Next1Game.FrontImage}"
-                   Grid.Row="9"
-                   Grid.RowSpan="9"
-                   Grid.Column="25"
-                   Grid.ColumnSpan="6"
+                    <Image Source="{Binding Next2Game_NextList.FrontImage}"
                    HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Stretch"
                    RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
                    Stretch="Uniform"/>
+                    <Image Source="{Binding Next3Game_NextList.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                    <Image Source="{Binding Next4Game_NextList.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                    <Image Source="{Binding Next5Game_NextList.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                    <Image Source="{Binding Next6Game_NextList.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                    <Image Source="{Binding Next7Game_NextList.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                    <Image Source="{Binding Next8Game_NextList.FrontImage}"
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Stretch"
+                   RenderOptions.BitmapScalingMode="HighQuality" 
+                   Margin="2,2,2,2"
+                   Stretch="Uniform"/>
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <!-- DISPLAYING SEARCH RESULTS -->

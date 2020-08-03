@@ -115,7 +115,7 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
         {
             if (!mainWindowViewModel.IsActive) return false;
 
-            mainWindowViewModel.MoveToPreviousGame();
+            mainWindowViewModel.MoveToPreviousSearchResult();
 
             return true;
         }
@@ -124,7 +124,7 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
         {
             if(!mainWindowViewModel.IsActive) return false;
 
-            mainWindowViewModel.MoveToNextGame();
+            mainWindowViewModel.MoveToNextSearchResult();
 
             return true;
         }
@@ -133,7 +133,7 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
         {
             if (!mainWindowViewModel.IsActive) return false;
 
-            mainWindowViewModel.MoveToPreviousSearchResult();
+            mainWindowViewModel.MoveToPreviousGame();
 
             return true;
         }
@@ -142,7 +142,7 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
         {
             if (!mainWindowViewModel.IsActive) return false;
 
-            mainWindowViewModel.MoveToNextSearchResult();
+            mainWindowViewModel.MoveToNextGame();
 
             return true;
         }

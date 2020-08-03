@@ -22,7 +22,25 @@ namespace BigBoxVoiceSearchPlugin.Models
         public string ClearLogoPath { get; set; }
         public string VideoPath { get; set; }
         public string PlatformClearLogoPath { get; set; }
+        public string BackgroundImagePath { get; set; }
         public MatchLevel MatchLevel { get; set; }
+
+        [NonSerialized()]
+        private BitmapImage backgroundImage;
+        public BitmapImage BackgroundImage
+        {
+            get
+            {
+                if(backgroundImage == null)
+                {
+                    if(!string.IsNullOrWhiteSpace(BackgroundImagePath))
+                    {
+                        backgroundImage = new BitmapImage(new Uri(BackgroundImagePath));
+                    }
+                }
+                return backgroundImage;
+            }
+        }
 
         [NonSerialized()]
         private BitmapImage frontImage;
@@ -86,6 +104,7 @@ namespace BigBoxVoiceSearchPlugin.Models
             ClearLogoPath = game.ClearLogoImagePath;
             FrontImagePath = game.FrontImagePath;
             VideoPath = game.VideoPath;
+            BackgroundImagePath = game.BackgroundImagePath;
             MatchLevel = matchLevel;
         }
         
