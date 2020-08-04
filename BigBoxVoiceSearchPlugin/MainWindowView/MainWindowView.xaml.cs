@@ -283,18 +283,31 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
 
                 foreach (var voiceRecognitionResult in distinctRecognizedPhrases)
                 {
+                    Helpers.Log($"Recognize completed.  Processing phrase: {voiceRecognitionResult.RecognizedPhrase}");
+
                     List<GameMatch> gameMatches;
                     if(GameTitleGames.TryGetValue(voiceRecognitionResult.RecognizedPhrase, out gameMatches))
                     {
+                        Helpers.Log($"Found {voiceRecognitionResult.RecognizedPhrase} in game titles dictionary with {gameMatches.Count} matches");
+
                         var matchingGames = from gameMatch in gameMatches
                                     join game in AllGames
                                     on gameMatch.Id equals game.Id
                                     select new MatchingGame(game, gameMatch.MatchLevel);
 
+                        Helpers.Log($"Got matching games for {voiceRecognitionResult.RecognizedPhrase}");
+
                         matchingGames = matchingGames.OrderBy(s => s.MatchLevel).ThenBy(s => s.Title);
+
+                        Helpers.Log($"Performed ordering of {voiceRecognitionResult.RecognizedPhrase}");
+
                         voiceRecognitionResult.MatchingGames = new List<MatchingGame>(matchingGames);
+
+                        Helpers.Log($"Assigned results for {voiceRecognitionResult.RecognizedPhrase}");
                     }
                 }
+
+                Helpers.Log($"Ordering final results");
 
                 mainWindowViewModel.VoiceRecognitionResults = 
                     new List<VoiceRecognitionResult>(distinctRecognizedPhrases

@@ -23,6 +23,7 @@ namespace BigBoxVoiceSearchPlugin.Models
         public string VideoPath { get; set; }
         public string PlatformClearLogoPath { get; set; }
         public string BackgroundImagePath { get; set; }
+        public string ScreenshotImagePath { get; set; }
         public MatchLevel MatchLevel { get; set; }
 
         [NonSerialized()]
@@ -78,6 +79,23 @@ namespace BigBoxVoiceSearchPlugin.Models
         }
 
         [NonSerialized()]
+        private BitmapImage screenshotImage;
+        public BitmapImage ScreenshotImage
+        {
+            get
+            {
+                if(screenshotImage == null)
+                {
+                    if(!string.IsNullOrWhiteSpace(ScreenshotImagePath))
+                    {
+                        screenshotImage = new BitmapImage(new Uri(ScreenshotImagePath));
+                    }
+                }
+                return screenshotImage;
+            }
+        }
+
+        [NonSerialized()]
         private BitmapImage platformClearLogo;
         public BitmapImage PlatformClearLogo
         {
@@ -105,6 +123,7 @@ namespace BigBoxVoiceSearchPlugin.Models
             FrontImagePath = game.FrontImagePath;
             VideoPath = game.VideoPath;
             BackgroundImagePath = game.BackgroundImagePath;
+            ScreenshotImagePath = game.ScreenshotImagePath;
             MatchLevel = matchLevel;
         }
         

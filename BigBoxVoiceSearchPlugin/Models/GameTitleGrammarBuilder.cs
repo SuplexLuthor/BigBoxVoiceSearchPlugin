@@ -38,7 +38,7 @@ namespace BigBoxVoiceSearchPlugin.Models
             foreach(string word in allTitleWords)
             {
                 // filter out noise words
-                if(!IsNoiseWord(word))
+                // if(!IsNoiseWord(word))
                 {
                     // replace roman numerals 
                     string wordRomanNumeralReplaced = GetRomanNumeralReplacement(word);
