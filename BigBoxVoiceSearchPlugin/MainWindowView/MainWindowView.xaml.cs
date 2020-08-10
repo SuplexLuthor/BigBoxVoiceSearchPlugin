@@ -6,6 +6,7 @@ using System.Linq;
 using System.Speech.Recognition;
 using System.Text;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using Unbroken.LaunchBox.Plugins;
 using Unbroken.LaunchBox.Plugins.Data;
 using Unbroken.LaunchBox.Plugins.RetroAchievements;
@@ -31,7 +32,6 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
             mainWindowViewModel.IsInitializing = false;
         }
         
-
         public void BuildGameTitleDictionary()
         {
             try
@@ -135,6 +135,13 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
 
             mainWindowViewModel.MoveToPreviousGame();
 
+            if (mainWindowViewModel.SelectedGame != null)
+            {
+                ((Storyboard)FindResource("BackgroundImageFadeOut")).Begin(Image_Selected_BackgroundImage);
+                ((Storyboard)FindResource("BackgroundImageFadeOut")).Begin(Image_Selected_Background_Black);
+                if (Video_SelectedGame != null) Video_SelectedGame.Pause();
+            }
+
             return true;
         }
 
@@ -143,6 +150,14 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
             if (!mainWindowViewModel.IsActive) return false;
 
             mainWindowViewModel.MoveToNextGame();
+
+            if (mainWindowViewModel.SelectedGame != null)
+            {
+                ((Storyboard)FindResource("BackgroundImageFadeOut")).Begin(Image_Selected_BackgroundImage);
+                ((Storyboard)FindResource("BackgroundImageFadeOut")).Begin(Image_Selected_Background_Black);
+
+                if (Video_SelectedGame != null) Video_SelectedGame.Pause();
+            }
 
             return true;
         }
@@ -251,6 +266,42 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
             mainWindowViewModel.IsRecognizing = false;
             mainWindowViewModel.VoiceRecognitionResults = new List<VoiceRecognitionResult>();
 
+            /*
+            // todo: remove test code
+            List<string> keys = new List<string>(GameTitleGames.Keys);
+
+            Random r = new Random(DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second);
+            int index = r.Next(0, keys.Count);
+            string key = keys[index];
+
+            var v = new VoiceRecognitionResult();
+            v.Confidence = 0.95f;
+            v.RecognizedPhrase = key;
+            VoiceRecognitionResultsTemp.Add(v);
+
+            index = r.Next(0, keys.Count);
+            key = keys[index];
+
+            v = new VoiceRecognitionResult();
+            v.Confidence = 0.9f;
+            v.RecognizedPhrase = key;
+            VoiceRecognitionResultsTemp.Add(v);
+
+            index = r.Next(0, keys.Count);
+            key = keys[index];
+            v = new VoiceRecognitionResult();
+            v.Confidence = 0.8f;
+            v.RecognizedPhrase = key;
+            VoiceRecognitionResultsTemp.Add(v);
+
+            index = r.Next(0, keys.Count);
+            key = keys[index];
+            v = new VoiceRecognitionResult();
+            v.Confidence = 0.7f;
+            v.RecognizedPhrase = key;
+            VoiceRecognitionResultsTemp.Add(v);
+            */
+
             if (e?.Error != null)
             {
                 if (Recognizer != null)
@@ -273,7 +324,6 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
                 return;
             }
 
-
             if (VoiceRecognitionResultsTemp?.Count() > 0)
             {
                 // in case the same phrase was recognized multiple times, group by phrase and keep only the max confidence
@@ -293,7 +343,7 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
                         var matchingGames = from gameMatch in gameMatches
                                     join game in AllGames
                                     on gameMatch.Id equals game.Id
-                                    select new MatchingGame(game, gameMatch.MatchLevel);
+                                    select new MatchingGame(game, gameMatch.MatchLevel, voiceRecognitionResult.Confidence);
 
                         Helpers.Log($"Got matching games for {voiceRecognitionResult.RecognizedPhrase}");
 
@@ -319,6 +369,25 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
             mainWindowViewModel.IsDisplayingResults = true;
             mainWindowViewModel.SelectedVoiceRecognitionResultIndex = 0;
             mainWindowViewModel.SearchResultIndexChanged();
+        }
+
+        private void Video_SelectedGame_MediaEnded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (mainWindowViewModel.SelectedGame != null)
+            {
+                ((Storyboard)FindResource("BackgroundImageFadeIn")).Begin(Image_Selected_BackgroundImage);
+                ((Storyboard)FindResource("BackgroundImageFadeIn")).Begin(Image_Selected_Background_Black);
+            }
+        }
+
+        private void DoubleAnimation_Completed(object sender, EventArgs e)
+        {
+            if (Video_SelectedGame != null) Video_SelectedGame.Pause();
+        }
+
+        private void DoubleAnimation_Completed_1(object sender, EventArgs e)
+        {
+            if (Video_SelectedGame != null) Video_SelectedGame.Play();
         }
     }
 }

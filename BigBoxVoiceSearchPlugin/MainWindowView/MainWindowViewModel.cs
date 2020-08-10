@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using Unbroken.LaunchBox.Plugins.Data;
 
@@ -34,6 +35,7 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
             SelectedGameIndex = Prev1GameIndex;
             GameIndexChanged();
         }
+
         // shift everything down 
         public void MoveToNextGame()
         {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -12,12 +14,12 @@ namespace BigBoxVoiceSearchPlugin.Models
 {
 
     [Serializable]
-    public class MatchingGame 
+    public class MatchingGame
     {
         public string Id { get; set; }
-        public int? LaunchBoxDbId { get; set; }        
+        public int? LaunchBoxDbId { get; set; }
         public string Title { get; set; }
-        public string Platform { get; set; }        
+        public string Platform { get; set; }
         public string FrontImagePath { get; set; }
         public string ClearLogoPath { get; set; }
         public string VideoPath { get; set; }
@@ -25,6 +27,23 @@ namespace BigBoxVoiceSearchPlugin.Models
         public string BackgroundImagePath { get; set; }
         public string ScreenshotImagePath { get; set; }
         public MatchLevel MatchLevel { get; set; }
+        public int? ReleaseYear { get; set; }
+        public string DetailsWithPlatform { get; set; }
+        public string DetailsWithoutPlatform { get; set; }
+        public float Confidence { get; set; }
+        private DateTime? releaseDate { get; set; }
+
+        public string ReleaseDate 
+        {
+            get
+            {
+                if(releaseDate?.Year == null)
+                {
+                    return ("");
+                }
+                return (releaseDate?.Year.ToString());
+            }
+        }
 
         [NonSerialized()]
         private BitmapImage backgroundImage;
@@ -43,6 +62,29 @@ namespace BigBoxVoiceSearchPlugin.Models
             }
         }
 
+        private double communityStarRating;
+        public Uri CommunityStarRatingImage
+        {
+            get
+            {
+                {
+                    string path = $"pack://application:,,,/BigBoxVoiceSearchPlugin;component/resources/StarRating/{communityStarRating}.png";
+                    return new Uri(path);
+                }
+            }
+        }
+
+        private string playMode;
+        public Uri PlayModeImage
+        {
+            get
+            {
+                string path = $"pack://application:,,,/BigBoxVoiceSearchPlugin;component/resources/PlayMode/{playMode}.png";
+                return new Uri(path);
+            }
+        }
+
+
         [NonSerialized()]
         private BitmapImage frontImage;
         public BitmapImage FrontImage 
@@ -57,7 +99,7 @@ namespace BigBoxVoiceSearchPlugin.Models
                     }
                 }
 
-                return (frontImage);
+                return frontImage;
             }
         }
 
@@ -112,7 +154,17 @@ namespace BigBoxVoiceSearchPlugin.Models
             }
         }
 
-        public MatchingGame(IGame game, MatchLevel matchLevel)
+        private double matchPercentage;
+        public string MatchPercentage
+        {
+            get { return $"{matchPercentage}% match"; }
+        }
+
+        public string Notes { get; set; }
+
+        
+
+        public MatchingGame(IGame game, MatchLevel matchLevel, float confidence = 0)
         {
             Id = game.Id;
             LaunchBoxDbId = game.LaunchBoxDbId;            
@@ -121,10 +173,21 @@ namespace BigBoxVoiceSearchPlugin.Models
             PlatformClearLogoPath = game.PlatformClearLogoImagePath;
             ClearLogoPath = game.ClearLogoImagePath;
             FrontImagePath = game.FrontImagePath;
-            VideoPath = game.VideoPath;
+            VideoPath = game.GetVideoPath();
             BackgroundImagePath = game.BackgroundImagePath;
             ScreenshotImagePath = game.ScreenshotImagePath;
             MatchLevel = matchLevel;
+            ReleaseYear = game.ReleaseYear;
+            DetailsWithoutPlatform = game.DetailsWithoutPlatform;
+            DetailsWithPlatform = game.DetailsWithPlatform;
+            Confidence = confidence;
+            releaseDate = game.ReleaseDate;
+            Notes = game.Notes;
+            communityStarRating = Math.Round(game.CommunityStarRating,1);
+            playMode = game.PlayMode;
+            Helpers.Log($"Game {game.Title} Star Rating {communityStarRating}");
+
+            matchPercentage = Math.Round(100 * (Confidence + (1 - ((int)MatchLevel / 4))) / 2, 0, MidpointRounding.AwayFromZero);
         }
         
         public override bool Equals(object obj)

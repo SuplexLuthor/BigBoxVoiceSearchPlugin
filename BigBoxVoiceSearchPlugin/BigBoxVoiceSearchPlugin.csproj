@@ -82,11 +82,77 @@
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\simplearrow.png" />
     <Resource Include="Resources\VoiceRecognitionGif.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\StarRating\0.0.png" />
+    <Resource Include="Resources\StarRating\0.1.png" />
+    <Resource Include="Resources\StarRating\0.2.png" />
+    <Resource Include="Resources\StarRating\0.3.png" />
+    <Resource Include="Resources\StarRating\0.4.png" />
+    <Resource Include="Resources\StarRating\0.5.png" />
+    <Resource Include="Resources\StarRating\0.6.png" />
+    <Resource Include="Resources\StarRating\0.7.png" />
+    <Resource Include="Resources\StarRating\0.8.png" />
+    <Resource Include="Resources\StarRating\0.9.png" />
+    <Resource Include="Resources\StarRating\0.png" />
+    <Resource Include="Resources\StarRating\1.0.png" />
+    <Resource Include="Resources\StarRating\1.1.png" />
+    <Resource Include="Resources\StarRating\1.2.png" />
+    <Resource Include="Resources\StarRating\1.3.png" />
+    <Resource Include="Resources\StarRating\1.4.png" />
+    <Resource Include="Resources\StarRating\1.5.png" />
+    <Resource Include="Resources\StarRating\1.6.png" />
+    <Resource Include="Resources\StarRating\1.7.png" />
+    <Resource Include="Resources\StarRating\1.8.png" />
+    <Resource Include="Resources\StarRating\1.9.png" />
+    <Resource Include="Resources\StarRating\2.0.png" />
+    <Resource Include="Resources\StarRating\2.1.png" />
+    <Resource Include="Resources\StarRating\2.2.png" />
+    <Resource Include="Resources\StarRating\2.3.png" />
+    <Resource Include="Resources\StarRating\2.4.png" />
+    <Resource Include="Resources\StarRating\2.5.png" />
+    <Resource Include="Resources\StarRating\2.6.png" />
+    <Resource Include="Resources\StarRating\2.7.png" />
+    <Resource Include="Resources\StarRating\2.8.png" />
+    <Resource Include="Resources\StarRating\2.9.png" />
+    <Resource Include="Resources\StarRating\3.0.png" />
+    <Resource Include="Resources\StarRating\3.1.png" />
+    <Resource Include="Resources\StarRating\3.2.png" />
+    <Resource Include="Resources\StarRating\3.3.png" />
+    <Resource Include="Resources\StarRating\3.4.png" />
+    <Resource Include="Resources\StarRating\3.5.png" />
+    <Resource Include="Resources\StarRating\3.6.png" />
+    <Resource Include="Resources\StarRating\3.7.png" />
+    <Resource Include="Resources\StarRating\3.8.png" />
+    <Resource Include="Resources\StarRating\3.9.png" />
+    <Resource Include="Resources\StarRating\4.0.png" />
+    <Resource Include="Resources\StarRating\4.1.png" />
+    <Resource Include="Resources\StarRating\4.2.png" />
+    <Resource Include="Resources\StarRating\4.3.png" />
+    <Resource Include="Resources\StarRating\4.4.png" />
+    <Resource Include="Resources\StarRating\4.5.png" />
+    <Resource Include="Resources\StarRating\4.6.png" />
+    <Resource Include="Resources\StarRating\4.7.png" />
+    <Resource Include="Resources\StarRating\4.8.png" />
+    <Resource Include="Resources\StarRating\4.9.png" />
+    <Resource Include="Resources\StarRating\5.0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\PlayMode\2-Player Alternating.png" />
+    <Resource Include="Resources\PlayMode\2-Player Simultaneous.png" />
+    <Resource Include="Resources\PlayMode\3-Player Simultaneous.png" />
+    <Resource Include="Resources\PlayMode\4-Player Alternating.png" />
+    <Resource Include="Resources\PlayMode\4-Player Simultaneous.png" />
+    <Resource Include="Resources\PlayMode\8-Player Alternating.png" />
+    <Resource Include="Resources\PlayMode\8-Player Simultaneous.png" />
+    <Resource Include="Resources\PlayMode\Cooperative.png" />
+    <Resource Include="Resources\PlayMode\Fallback.png" />
+    <Resource Include="Resources\PlayMode\Multiplayer.png" />
+    <Resource Include="Resources\PlayMode\Single Player.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

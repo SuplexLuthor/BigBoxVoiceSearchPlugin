@@ -12,9 +12,7 @@ namespace BigBoxVoiceSearchPlugin.Models
         FullTitleMatch = 0,
         MainTitleMatch = 1,
         SubtitleMatch = 2,
-        FullTitleStartsWith = 3,
-        SubtitleStartsWith = 4,
-        FullTitleContains = 5, 
+        FullTitleContains = 3, 
         None = 100
     }
 }
