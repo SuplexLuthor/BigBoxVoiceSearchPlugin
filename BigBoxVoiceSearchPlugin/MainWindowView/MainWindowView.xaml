@@ -116,7 +116,6 @@
                 Stretch="Uniform"
                 RenderOptions.BitmapScalingMode="HighQuality" 
                 gif:ImageBehavior.AnimatedSource="{Binding VoiceRecognitionGif}"/>
-
         </Grid>
         <!-- END RECOGNIZING -->
 
@@ -238,57 +237,68 @@
                         VerticalAlignment="Center"/>
 
                 <TextBlock Name="TextBlock_Divider2"
-                       Text=" | "
-                       FontFamily="Arial " 
-                        FontWeight="Regular"
-                        FontSize="20" 
-                        Foreground="DarkSlateGray"
-                        TextTrimming="None"
-                        TextWrapping="NoWrap"
-                        TextAlignment="Center"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
+                            Text=" | "
+                            FontFamily="Arial " 
+                            FontWeight="Regular"
+                            FontSize="20" 
+                            Foreground="DarkSlateGray"
+                            TextTrimming="None"
+                            TextWrapping="NoWrap"
+                            TextAlignment="Center"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
 
-                <TextBlock Name="TextBlock_Platform"
-                       Text="{Binding SelectedGame.Platform}"
-                       FontFamily="Arial" 
+                <Image Name="Image_CommunityStarRating"
+                    Source="{Binding SelectedGame.CommunityStarRatingImage}"
+                    RenderOptions.BitmapScalingMode="HighQuality" 
+                    Height="{Binding ActualHeight,ElementName=TextBlock_MatchPercentage}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Stretch="Uniform"/>
+
+                <TextBlock  Name="TextBlock_Divider3"
+                            Text=" | "
+                            FontFamily="Arial " 
+                            FontWeight="Regular"
+                            FontSize="20" 
+                            Foreground="DarkSlateGray"
+                            TextTrimming="None"
+                            TextWrapping="NoWrap"
+                            TextAlignment="Center"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+
+                <Image  Name="Image_Playmode"
+                        Source="{Binding SelectedGame.PlayModeImage}"
+                        Height="{Binding ActualHeight,ElementName=TextBlock_MatchPercentage}"
+                        RenderOptions.BitmapScalingMode="HighQuality" 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Stretch="Uniform"/>
+            </StackPanel>
+
+
+            <!-- Selected game details-->
+            <StackPanel Grid.Row="6" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="15"
+                Orientation="Horizontal"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Panel.ZIndex="100">
+                <TextBlock  Name="TextBlock_Platform"
+                        Text="{Binding SelectedGame.Platform}"
+                        FontFamily="Arial" 
                         FontWeight="Regular"
-                        FontSize="20" 
+                        FontSize="26" 
                         Foreground="White"
                         TextTrimming="None"
                         TextWrapping="NoWrap"
                         TextAlignment="Center"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Top"/>
             </StackPanel>
 
-            <Image Name="Image_Playmode"
-                   Source="{Binding SelectedGame.PlayModeImage}"
-                   Grid.Row="6"
-                   Grid.RowSpan="1"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="1"
-                   Stretch="Uniform"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"/>
 
-            <Image Name="Image_CommunityStarRating"
-                   Source="{Binding SelectedGame.CommunityStarRatingImage}"
-                   Grid.Row="6"
-                   Grid.RowSpan="1"
-                   Grid.Column="4"
-                   Grid.ColumnSpan="2"
-                   Stretch="Uniform"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top"/>
-            
-            <!-- Selected game platform clear logo -->
-            <!--<Image Name="Image_Selected_PlatformClearLogo"
-                   Source="{Binding SelectedGame.PlatformClearLogo}"
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Bottom"
-                   RenderOptions.BitmapScalingMode="HighQuality" 
-                   Stretch="Uniform"/>-->
+
 
 
 
@@ -364,13 +374,8 @@
                     <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <!-- 
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="30*"/>
-                    -->
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="31*"/>
-
                 </Grid.ColumnDefinitions>
                 <!-- Selected Voice Search Result -->
                 <TextBlock  

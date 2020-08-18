@@ -200,7 +200,6 @@ namespace BigBoxVoiceSearchPlugin.MainWindowView
 
         private bool CreateRecognizer()
         {
-            // todo: testing with dictionary
             List<string> titleElements = new List<string>(GameTitleGames.Keys);
 
             // add the distinct phrases to the list of choices
